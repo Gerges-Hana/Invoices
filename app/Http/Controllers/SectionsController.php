@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\sections as ModelsSections;
 use App\sections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,8 @@ class SectionsController extends Controller
     public function index()
     {
         $sections = \App\Models\sections::all();
+        // dd($sections);
         return view('sections.sections',compact('sections'));
-        // return view('sections.sections');
     }
 
     /**
@@ -68,9 +69,11 @@ class SectionsController extends Controller
      * @param  \App\sections  $sections
      * @return \Illuminate\Http\Response
      */
-    public function show(\App\Models\sections $sections)
+    public function show($id)
     {
         //
+        $section=\App\Models\sections::find($id);
+        return view('sections.sections',compact('section'));
     }
 
     /**

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SectionsController;
 
 /*
@@ -26,6 +27,7 @@ Auth::routes();
 
 Route::resource('invoice',InvoicesController::class);
 Route::resource('sections',SectionsController::class);
+Route::resource('products',ProductsController::class);
 
 
 
