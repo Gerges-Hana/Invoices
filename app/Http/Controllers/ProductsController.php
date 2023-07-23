@@ -54,8 +54,8 @@ class ProductsController extends Controller
             'section_id' => 'required',
             'description' => 'string',
         ],[
-            'Product_name.required' =>'يرجي ادخال اسم القسم',
-            'Product_name.unique' =>'اسم القسم مسجل مسبقا',
+            'Product_name.required' =>'يرجي ادخال اسم المنتج',
+            'Product_name.unique' =>'اسم المنتج مسجل مسبقا',
             'section_id.required' =>'يرجي اختيار قسم ',
             'description.string' => 'يجب ان يكون الوصف يحتوي عي نص ',
         ]);
@@ -65,7 +65,7 @@ class ProductsController extends Controller
         'section_id'=>$request->section_id,
         'description'=>$request->description,
         ]);
-        session()->flash('Add', 'تم اضافة القسم بنجاح ');
+        session()->flash('Add', 'تم اضافة المنتج بنجاح ');
             return redirect('/products');
 
 
@@ -100,9 +100,34 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateproductsRequest $request, products $products)
+    public function update(Request $request)
     {
         //
+        $id_v=$request->id;
+
+        $validatedData = $request->validate([
+            'Product_name' => 'required|unique:products|max:255'.$id_v,
+            // 'section_id' => 'required',
+            'description' => 'string',
+        ],[
+            'Product_name.required' =>'يرجي ادخال اسم القسم',
+            'Product_name.unique' =>'اسم القسم مسجل مسبقا',
+            // 'section_id.required' =>'يرجي اختيار قسم ',
+            'description.string' => 'يجب ان يكون الوصف يحتوي عي نص ',
+        ]);
+
+        $id = sections::where('section_name', $request->section_name)->first()->id;
+
+        $Products = Products::findOrFail($request->pro_id);
+
+        $Products->update([
+        'Product_name' => $request->Product_name,
+        'description' => $request->description,
+        'section_id' => $id,
+        ]);
+
+        session()->flash('Edit', 'تم تعديل المنتج بنجاح');
+        return back();
     }
 
     /**
@@ -111,8 +136,13 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $products)
+    public function destroy(Request $request)
     {
         //
+        // dd($request);
+        $id=$request->id;
+        products::find($id)?->delete();
+        session()->flash('delete','تم حذف المنتج بنجاح');
+        return redirect('/products');
     }
 }
