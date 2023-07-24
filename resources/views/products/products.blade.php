@@ -112,7 +112,7 @@
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                             data-id="{{ $product->id }}"
-                                            data-Product_name="{{ $product->Product_name }}"
+                                            data-Product_name="{{ $product->product_name }}"
                                             data-section_name="{{ $product->section_name }}"
                                             data-toggle="modal"
                                             href="#modaldemo9" title="حذف"><i class="las la-trash"></i></a>

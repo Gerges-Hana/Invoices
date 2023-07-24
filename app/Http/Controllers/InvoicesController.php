@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\invoices;
 use App\Http\Requests\StoreinvoicesRequest;
 use App\Http\Requests\UpdateinvoicesRequest;
+use App\Models\sections;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InvoicesController extends Controller
 {
@@ -16,7 +19,8 @@ class InvoicesController extends Controller
     public function index()
     {
         //
-        return view('invoices.invoices');
+        $invoices=invoices::all();
+        return view('invoices.invoices',compact('invoices'));
     }
 
     /**
@@ -27,6 +31,9 @@ class InvoicesController extends Controller
     public function create()
     {
         //
+        $sections=sections::all();
+
+         return view('invoices.add_invoice',compact('sections'));
     }
 
     /**
@@ -84,4 +91,23 @@ class InvoicesController extends Controller
     {
         //
     }
+    public function getproducts($id)
+    {
+        //
+        // dd('fun',$id);
+        $products = DB::table("products")->where("section_id", $id)->pluck("Product_name", "id");
+        // return json_encode($products);
+        return response()->json($products);
+    }
+//     public function getBySection($sectionId)
+// {
+//     // استخراج المنتجات التي تنتمي إلى القسم المحدد
+//     $products = DB::table('products')->where('section_id', $sectionId)->get();
+
+//     // إعادة البيانات في شكل JSON
+//     return response()->json($products);
+// }
+
+
+
 }

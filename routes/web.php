@@ -25,11 +25,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('invoice',InvoicesController::class);
+Route::resource('invoices',InvoicesController::class);
 Route::resource('sections',SectionsController::class);
 Route::resource('products',ProductsController::class);
-
-
+Route::get('/section/{id}',[ InvoicesController::class,'getproducts']);
+// Route::get('/products/{sectionId}',[ InvoicesController::class,'getBySection']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::group(['middleware' => ['auth']], function() {

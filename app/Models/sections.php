@@ -21,7 +21,7 @@ class sections extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function productsOfSections(): HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(products::class);
     }

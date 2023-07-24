@@ -109,9 +109,11 @@
 
 
                                         <a class="modal-effect btn btn-sm btn-success" data-effect="effect-scale"
-                                            data-id="{{ $x->id }}" data-section_name="{{ $x->section_name }}"
+                                            data-id="{{ $x->id }}"
+                                            data-section_name="{{ $x->section_name }}"
                                             data-description="{{ $x->description }}"
-                                            data-created_by="{{ $x->created_by }}" data-toggle="modal"
+                                            data-created_by="{{ $x->created_by }}"
+                                            data-toggle="modal"
                                             href="#modaldemo99" title="عرض"><i class="las la-eye"></i>
 
 
