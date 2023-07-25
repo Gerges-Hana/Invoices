@@ -260,14 +260,14 @@
                                                                                 class="fas fa-download"></i>&nbsp;
                                                                             تحميل</a>
 
-                                                                        @can('حذف المرفق')
+                                                                        {{-- @can('حذف المرفق') --}}
                                                                             <button class="btn btn-outline-danger btn-sm"
                                                                                 data-toggle="modal"
                                                                                 data-file_name="{{ $attachment->file_name }}"
                                                                                 data-invoice_number="{{ $attachment->invoice_number }}"
                                                                                 data-id_file="{{ $attachment->id }}"
                                                                                 data-target="#delete_file">حذف</button>
-                                                                        @endcan
+                                                                        {{-- @endcan --}}
 
                                                                     </td>
                                                                 </tr>
@@ -305,7 +305,7 @@
                     </button>
                 </div>
                 {{-- {{ route('delete_file') }} --}}
-                <form action="" method="post">
+                <form action="{{url('attachment/{id}')}}" method="post">
 
                     {{ csrf_field() }}
                     <div class="modal-body">
