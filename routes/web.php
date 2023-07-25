@@ -19,6 +19,9 @@ use App\Http\Controllers\SectionsController;
 |
 */
 
+
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -31,6 +34,7 @@ Route::resource('invoices',InvoicesController::class);
 Route::resource('sections',SectionsController::class);
 Route::resource('products',ProductsController::class);
 Route::get('/section/{id}',[ InvoicesController::class,'getproducts']);
+Route::post('/Status/{id}',[ InvoicesController::class,'Status_Update'])->name('Status_Update');
 Route::get('/edit_invoice/{id}',[ InvoicesController::class,'edit']);
 Route::get('/InvoicesDetails/{id}',[ InvoicesDetailsController::class,'edit']);
 Route::post('/attachment/{id}',[ InvoicesDetailsController::class,'destroy'])->name('delete_file');
