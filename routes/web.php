@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InvoiceAttachmentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\ProductsController;
@@ -34,7 +35,8 @@ Route::get('/InvoicesDetails/{id}',[ InvoicesDetailsController::class,'edit']);
 Route::post('/attachment/{id}',[ InvoicesDetailsController::class,'destroy'])->name('delete_file');
 Route::get('download/{invoice_number}/{file_name}', [ InvoicesDetailsController::class,'get_file']);
 Route::get('View_file/{invoice_number}/{file_name}' ,[ InvoicesDetailsController::class,'open_file']);
-// Route::get('/products/{sectionId}',[ InvoicesController::class,'getBySection']);
+Route::post('InvoiceAttachments',[InvoiceAttachmentsController::class,'store']);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::group(['middleware' => ['auth']], function() {
