@@ -119,7 +119,7 @@
                                             <td>{{ $invoice->Due_date }}</td>
                                             <td>{{ $invoice->product }}</td>
                                             <td><a
-                                                    href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
+                                                    href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section?->section_name }}</a>
                                             </td>
                                             <td>{{ $invoice->Discount }}</td>
                                             <td>{{ $invoice->Rate_VAT }}</td>
@@ -157,13 +157,13 @@
                                                             الفاتورة</a>
                                                         {{-- @endcan --}}
 
-                                                        {{-- @can('تغير حالة الدفع') --}}
+                                                        {{-- @can('تغير حالة الدفع')
                                                         <a class="dropdown-item"
                                                             href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
                                                                 class=" text-success fas
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     fa-money-bill"></i>&nbsp;&nbsp;تغير
                                                             حالة
-                                                            الدفع</a>
+                                                            الدفع</a> --}}
                                                         {{-- @endcan --}}
 
                                                         {{-- @can('ارشفة الفاتورة') --}}

@@ -25,4 +25,8 @@ class sections extends Model
     {
         return $this->hasMany(products::class);
     }
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(invoices::class);
+    }
 }
