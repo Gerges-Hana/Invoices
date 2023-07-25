@@ -145,7 +145,8 @@
                                                     <div class="dropdown-menu tx-13">
                                                         {{-- @can('تعديل الفاتورة') --}}
                                                         <a class="dropdown-item"
-                                                            href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل
+                                                            href=" {{ url('edit_invoice') }}/{{ $invoice->id }}"><i
+                                                            class="text-info fas fa-pen"></i>تعديل
                                                             الفاتورة</a>
                                                         {{-- @endcan --}}
 
@@ -180,6 +181,14 @@
                                                             الفاتورة
                                                         </a>
                                                         {{-- @endcan --}}
+                                                        <a class="dropdown-item" href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">
+                                                            <i class="text-success fas fa-eye"></i>
+
+                                                            &nbsp;&nbsp;عرض
+                                                            الفاتورة
+                                                        </a>
+
+
                                                     </div>
                                                 </div>
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class invoice_attachments extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     protected $fillable=[
         'file_name',
@@ -16,5 +16,5 @@ class invoice_attachments extends Model
         'Created_by',
         'invoice_id',
     ];
-    
+
 }
