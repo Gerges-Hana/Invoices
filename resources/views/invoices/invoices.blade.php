@@ -36,7 +36,7 @@
             window.onload = function() {
                 notif({
                     msg: "تم حذف الفاتورة بنجاح",
-                    type: "success"
+                    type: "warning "
                 })
             }
         </script>
@@ -153,7 +153,8 @@
 
                                                         {{-- @can('حذف الفاتورة') --}}
                                                         <a class="dropdown-item" href="#"
-                                                            data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
+                                                            data-invoice_id="{{ $invoice->id }}"
+                                                            data-toggle="modal"
                                                             data-target="#delete_invoice"><i
                                                                 class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                             الفاتورة</a>
@@ -222,7 +223,7 @@
                     </div>
                     <div class="modal-body">
                         هل انت متاكد من عملية الحذف ؟
-                        <input type="hidden" name="invoice_id" id="invoice_id" value="">
+                        <input type="text" name="invoice_id" id="invoice_id" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
