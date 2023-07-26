@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    قائمة الفواتير
+    الفواتير المدفوعة
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -13,22 +13,20 @@
     <!--Internal   Notify -->
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @endsection
-
 @section('page-header')
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
-                    الفواتير</span>
+                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الفواتير
+                    المدفوعة
+                </span>
             </div>
         </div>
 
     </div>
     <!-- breadcrumb -->
 @endsection
-
-
 @section('content')
 
     @if (session()->has('delete_invoice'))
@@ -36,9 +34,10 @@
             window.onload = function() {
                 notif({
                     msg: "تم حذف الفاتورة بنجاح",
-                    type: "warning "
+                    type: "success"
                 })
             }
+
         </script>
     @endif
 
@@ -51,20 +50,9 @@
                     type: "success"
                 })
             }
+
         </script>
     @endif
-
-    @if (session()->has('restore_invoice'))
-        <script>
-            window.onload = function() {
-                notif({
-                    msg: "تم استعادة الفاتورة بنجاح",
-                    type: "success"
-                })
-            }
-        </script>
-    @endif
-
 
     <!-- row -->
     <div class="row">
@@ -72,21 +60,14 @@
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
-                    {{-- @can('اضافة فاتورة') --}}
-                    <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
-                            class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
-                    {{-- @endcan --}}
-
-                    {{-- @can('تصدير EXCEL') --}}
-                    <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
-                        style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
-                    {{-- @endcan --}}
-
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('invoices.create') }}" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
+                                class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example1" class="table key-buttons text-md-nowrap"
-                            data-page-length='50'style="text-align: center">
+                        <table id="example1" class="table key-buttons text-md-nowrap" data-page-length='50'>
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
@@ -106,12 +87,11 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 0;
+                                $i = 0;
                                 @endphp
-
                                 @foreach ($invoices as $invoice)
                                     @php
-                                        $i++;
+                                    $i++
                                     @endphp
                                     <tr>
                                         <td>{{ $i }}</td>
@@ -120,7 +100,7 @@
                                         <td>{{ $invoice->Due_date }}</td>
                                         <td>{{ $invoice->product }}</td>
                                         <td><a
-                                                href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section?->section_name }}</a>
+                                                href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
                                         </td>
                                         <td>{{ $invoice->Discount }}</td>
                                         <td>{{ $invoice->Rate_VAT }}</td>
@@ -139,7 +119,6 @@
 
                                         <td>{{ $invoice->note }}</td>
                                         <td>
-
 
                                             <div class="dropdown">
                                                 <button aria-expanded="false" aria-haspopup="true"
@@ -180,9 +159,9 @@
 
                                                     {{-- @can('طباعةالفاتورة') --}}
                                                     <a class="dropdown-item" href="/invoices/print/{{ $invoice->id }}"><i
-                                                            class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
-                                                        الفاتورة
-                                                    </a>
+                                                        class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                                    الفاتورة
+                                                </a>
                                                     {{-- @endcan --}}
                                                     <a class="dropdown-item"
                                                         href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">
@@ -208,6 +187,7 @@
         </div>
         <!--/div-->
     </div>
+
 
     <!-- حذف الفاتورة -->
     <div class="modal fade" id="delete_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -265,7 +245,6 @@
             </div>
         </div>
     </div>
-
     </div>
     <!-- row closed -->
     </div>
@@ -273,8 +252,6 @@
     </div>
     <!-- main-content closed -->
 @endsection
-
-
 @section('js')
     <!-- Internal Data tables -->
     <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
@@ -316,6 +293,7 @@
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
     </script>
+
 
 
 @endsection

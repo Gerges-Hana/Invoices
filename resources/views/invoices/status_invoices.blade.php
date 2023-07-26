@@ -23,7 +23,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('Status_Update', ['id' => $invoices->id]) }}" method="post" autocomplete="off">
+                    <form action="{{ route('Status_Update', ['id' => $invoices?->id]) }}" method="post" autocomplete="off">
                         {{ csrf_field() }}
                         {{-- 1 --}}
                         <div class="row">

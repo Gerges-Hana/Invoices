@@ -24,6 +24,7 @@ class InvoicesController extends Controller
     {
         //
         $invoices = invoices::all();
+        // dd($invoices);
         return view('invoices.invoices', compact('invoices'));
     }
 
@@ -130,12 +131,15 @@ class InvoicesController extends Controller
      */
     public function show($id)
     {
-        $invoices=invoices::find($id)->first();
-        // return $invoice;
+        $invoices=invoices::where('id',$id)->first();
+
+        // return [$id,$invoices];
         return view('invoices.status_invoices',compact('invoices'));
     }
     public function Status_Update($id,Request $request){
         $invoices = invoices::findOrFail($id);
+
+
         if ($request->Status === 'مدفوعة') {
 
             $invoices->update([
@@ -155,6 +159,8 @@ class InvoicesController extends Controller
                 'Payment_Date' => $request->Payment_Date,
                 'user' => (Auth::user()->name),
             ]);
+
+
         }
 
         else {
@@ -174,9 +180,11 @@ class InvoicesController extends Controller
                 'Payment_Date' => $request->Payment_Date,
                 'user' => (Auth::user()->name),
             ]);
+
         }
+         $invoices = invoices::all();
         session()->flash('Status_Update');
-        return redirect('/invoices');
+        return view('invoices.invoices',compact('invoices'));
 
     }
 
@@ -189,7 +197,7 @@ class InvoicesController extends Controller
     public function edit($id)
     {
         //
-        $invoices = invoices::where('id', $id)->first();
+        $invoices  = invoices::where('id', $id)->first();
         $sections = sections::all();
         // return $id;
         return view('invoices.edit_invoice', compact('invoices', 'sections'));
@@ -244,27 +252,28 @@ class InvoicesController extends Controller
 
         ]);
         // return $request;
-        if ($request->hasFile('pic')) {
+        // if ($request->hasFile('pic')) {
 
-            // $invoice_id = Invoices::latest()->first()->id;
-            $image = $request->file('pic');
-            $file_name = $image->getClientOriginalName();
-            $invoice_number = $request->invoice_number;
+        //     // $invoice_id = Invoices::latest()->first()->id;
+        //     $image = $request->file('pic');
+        //     $file_name = $image->getClientOriginalName();
+        //     $invoice_number = $request->invoice_number;
 
-            $attachments = new invoice_attachments();
-            $attachments->file_name = $file_name;
-            $attachments->invoice_number = $invoice_number;
-            $attachments->Created_by = Auth::user()->name;
-            $attachments->invoice_id = $invoice_id;
-            $attachments->save();
+        //     $attachments = new invoice_attachments();
+        //     $attachments->file_name = $file_name;
+        //     $attachments->invoice_number = $invoice_number;
+        //     $attachments->Created_by = Auth::user()->name;
+        //     $attachments->invoice_id = $invoice_id;
+        //     $attachments->save();
 
-            // move pic
-            $imageName = $request->pic->getClientOriginalName();
-            $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
-        }
+        //     // move pic
+        //     $imageName = $request->pic->getClientOriginalName();
+        //     $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
+        // }
+         $invoices = invoices::all();
 
         session()->flash('edit', 'تم تعديل الفاتورة بنجاح');
-        return view('invoices.invoices');
+        return view('invoices.invoices',compact('invoices'));
         // ===========================
 
     }
@@ -282,29 +291,29 @@ class InvoicesController extends Controller
         $invoices = invoices::where('id', $id)->first();
         $Details = invoice_attachments::where('invoice_id', $id)->first();
 
-        // $id_page =$request->id_page;
-        //    if (!$id_page==2) {
+        $id_page =$request->id_page;
+           if (!$id_page==2) {
 
-        //    if (!empty($Details->invoice_number)) {
+           if (!empty($Details->invoice_number)) {
 
-        //        Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
-        //    }
+               Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+           }
 
-        //    $invoices->forceDelete();
-        //    session()->flash('delete_invoice');
-        //    return redirect('/invoices');
+           $invoices->forceDelete();
+           session()->flash('delete_invoice');
+           return redirect('/invoices');
 
-        //    }
+           }
 
-        //    else {
+           else {
 
-        //    $invoices->delete();
-        //    session()->flash('archive_invoice');
-        //    return redirect('/Archive');
-        //    }
-        $invoices->delete();
-        session()->flash('delete_invoice');
-        return redirect('/invoices');
+           $invoices->delete();
+           session()->flash('archive_invoice');
+           return redirect('/Archive');
+           }
+        // $invoices->delete();
+        // session()->flash('delete_invoice');
+        // return redirect('/invoices');
     }
     public function getproducts($id)
     {
@@ -314,15 +323,27 @@ class InvoicesController extends Controller
         // return json_encode($products);
         return response()->json($products);
     }
-    //     public function getBySection($sectionId)
-    // {
-    //     // استخراج المنتجات التي تنتمي إلى القسم المحدد
-    //     $products = DB::table('products')->where('section_id', $sectionId)->get();
 
-    //     // إعادة البيانات في شكل JSON
-    //     return response()->json($products);
-    // }
+    public function paid(){
+        $invoices=invoices::where('Value_Status',1)->get();
+        return view('invoices.invoices_paid',compact('invoices'));
+    }
+    public function unpaid(){
+        $invoices=invoices::where('Value_Status',2)->get();
+        return view('invoices.invoices_paid',compact('invoices'));
 
+    }
+    public function partial(){
+        $invoices=invoices::where('Value_Status',3)->get();
+        return view('invoices.invoices_paid',compact('invoices'));
 
+    }
+
+    public function print($id){
+
+        $invoices  = invoices::where('id', $id)->first();
+
+        return view('invoices.invoice_print',compact('invoices'));
+    }
 
 }

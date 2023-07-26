@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\InvoiceAttachmentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
@@ -29,18 +30,28 @@ Route::get('/', function () {
 // Route::get('/{page}', 'AdminController@index');
 
 Auth::routes();
+Route::post('/Status/{id}',[ InvoicesController::class,'Status_Update'])->name('Status_Update');
+
+Route::get('/invoices/paid',[ InvoicesController::class,'paid'])->name('paid');
+Route::get('/invoices/print/{id}',[ InvoicesController::class,'print'])->name('print');
+Route::get('/invoices/unpaid',[ InvoicesController::class,'unpaid'])->name('unpaid');
+Route::get('/invoices/partial',[ InvoicesController::class,'partial'])->name('partial');
+
 
 Route::resource('invoices',InvoicesController::class);
+Route::resource('archive',ArchiveController::class);
 Route::resource('sections',SectionsController::class);
 Route::resource('products',ProductsController::class);
+// Route::resource('archive',ProductsController::class);
 Route::get('/section/{id}',[ InvoicesController::class,'getproducts']);
-Route::post('/Status/{id}',[ InvoicesController::class,'Status_Update'])->name('Status_Update');
 Route::get('/edit_invoice/{id}',[ InvoicesController::class,'edit']);
 Route::get('/InvoicesDetails/{id}',[ InvoicesDetailsController::class,'edit']);
 Route::post('/attachment/{id}',[ InvoicesDetailsController::class,'destroy'])->name('delete_file');
 Route::get('download/{invoice_number}/{file_name}', [ InvoicesDetailsController::class,'get_file']);
 Route::get('View_file/{invoice_number}/{file_name}' ,[ InvoicesDetailsController::class,'open_file']);
 Route::post('InvoiceAttachments',[InvoiceAttachmentsController::class,'store']);
+
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

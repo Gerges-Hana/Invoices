@@ -91,54 +91,54 @@
                                                     <tbody>
                                                         <tr>
                                                             <th scope="row"class="fw-bold border-info" class="fw-bold border-info">رقم الفاتورة</th>
-                                                            <td>{{ $invoices->invoice_number }}</td>
+                                                            <td>{{ $invoices?->invoice_number }}</td>
                                                             <th scope="row"class="fw-bold border-info">تاريخ الاصدار</th>
-                                                            <td>{{ $invoices->invoice_Date }}</td>
+                                                            <td>{{ $invoices?->invoice_Date }}</td>
                                                             <th scope="row"class="fw-bold border-info">تاريخ الاستحقاق</th>
-                                                            <td>{{ $invoices->Due_date }}</td>
+                                                            <td>{{ $invoices?->Due_date }}</td>
                                                             <th scope="row"class="fw-bold border-info">القسم</th>
-                                                            <td>{{ $invoices->Section->section_name }}</td>
+                                                            <td>{{ $invoices?->Section->section_name }}</td>
                                                         </tr>
 
                                                         <tr>
                                                             <th scope="row"class="fw-bold border-info">المنتج</th>
-                                                            <td>{{ $invoices->product }}</td>
+                                                            <td>{{ $invoices?->product }}</td>
                                                             <th scope="row"class="fw-bold border-info">مبلغ التحصيل</th>
-                                                            <td>{{ $invoices->Amount_collection }}</td>
+                                                            <td>{{ $invoices?->Amount_collection }}</td>
                                                             <th scope="row"class="fw-bold border-info">مبلغ العمولة</th>
-                                                            <td>{{ $invoices->Amount_Commission }}</td>
+                                                            <td>{{ $invoices?->Amount_Commission }}</td>
                                                             <th scope="row"class="fw-bold border-info">الخصم</th>
-                                                            <td>{{ $invoices->Discount }}</td>
+                                                            <td>{{ $invoices?->Discount }}</td>
                                                         </tr>
 
 
                                                         <tr>
                                                             <th scope="row"class="fw-bold border-info">نسبة الضريبة</th>
-                                                            <td>{{ $invoices->Rate_VAT }}</td>
+                                                            <td>{{ $invoices?->Rate_VAT }}</td>
                                                             <th scope="row"class="fw-bold border-info">قيمة الضريبة</th>
-                                                            <td>{{ $invoices->Value_VAT }}</td>
+                                                            <td>{{ $invoices?->Value_VAT }}</td>
                                                             <th scope="row"class="fw-bold border-info">الاجمالي مع الضريبة</th>
-                                                            <td>{{ $invoices->Total }}</td>
+                                                            <td>{{ $invoices?->Total }}</td>
                                                             <th scope="row"class="fw-bold border-info">الحالة الحالية</th>
 
-                                                            @if ($invoices->Value_Status == 1)
+                                                            @if ($invoices?->Value_Status == 1)
                                                                 <td><span
                                                                         class="badge badge-pill badge-success">{{ $invoices->Status }}</span>
                                                                 </td>
-                                                            @elseif($invoices->Value_Status ==2)
+                                                            @elseif($invoices?->Value_Status ==2)
                                                                 <td><span
-                                                                        class="badge badge-pill badge-danger">{{ $invoices->Status }}</span>
+                                                                        class="badge badge-pill badge-danger">{{ $invoices?->Status }}</span>
                                                                 </td>
                                                             @else
                                                                 <td><span
-                                                                        class="badge badge-pill badge-warning">{{ $invoices->Status }}</span>
+                                                                        class="badge badge-pill badge-warning">{{ $invoices?->Status }}</span>
                                                                 </td>
                                                             @endif
                                                         </tr>
 
                                                         <tr>
                                                             <th scope="row" class="fw-bold border-info">ملاحظات</th>
-                                                            <td>{{ $invoices->note }}</td>
+                                                            <td>{{ $invoices?->note }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -213,9 +213,9 @@
                                                                 <input type="file" class="custom-file-input" id="customFile"
                                                                     name="file_name" required>
                                                                 <input type="hidden" id="customFile" name="invoice_number"
-                                                                    value="{{ $invoices->invoice_number }}">
+                                                                    value="{{ $invoices?->invoice_number }}">
                                                                 <input type="hidden" id="invoice_id" name="invoice_id"
-                                                                    value="{{ $invoices->id }}">
+                                                                    value="{{ $invoices?->id }}">
                                                                 <label class="custom-file-label" for="customFile">حدد
                                                                     المرفق</label>
                                                             </div><br><br>
