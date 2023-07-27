@@ -41,7 +41,7 @@
                                 <br>
                                <p>تلفون : 01142585940</p>
                                 <br>
-                                <p>Email: gergeshana2023@gmail.com</p>
+                                <p>الايميل: gergeshana2023@gmail.com</p>
 
                             </div><!-- billed-from -->
                         </div><!-- invoice-header -->
@@ -62,6 +62,8 @@
                                 </p>
                                 <p class="invoice-info-row"><span>القسم</span>
                                     <span>{{ $invoices->section->section_name }}</span>
+                                </p>
+                                <p class="invoice-info-row"><span></span>
                                 </p>
                             </div>
                         </div>
@@ -132,7 +134,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td class="tx-right">نسبة الضريبة </td>                                        
+                                    <td class="tx-right">نسبة الضريبة </td>
                                     <td class="tx-right text-center" colspan="">{{$invoices->Rate_VAT }}</td>
                                 </tr>
 

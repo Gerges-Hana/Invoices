@@ -34,6 +34,8 @@
 							<li><a class="slide-item" href="{{ url('/' . $page='invoices/unpaid') }}">الفواتير الغير مدفوعه </a></li>
 							<li><a class="slide-item" href="{{ url('/' . $page='invoices/partial') }}">الفواتير المدفوعه جزئيا</a></li>
 							<li><a class="slide-item" href="{{route('archive.index') }}">الفواتير المؤرشفه </a></li>
+							<li><a class="slide-item" href="{{url('/invoices/create') }}">اضافه فتوره </a></li>
+
 
 						</ul>
 					</li>
