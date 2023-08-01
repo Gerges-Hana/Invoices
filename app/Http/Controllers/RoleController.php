@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
@@ -16,12 +14,65 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  $permissions = [
+    //     'الفواتير',
+    //     'قائمة الفواتير',
+    //     'الفواتير المدفوعة',
+    //     'الفواتير المدفوعة جزئيا',
+    //     'الفواتير الغير مدفوعة',
+    //     'ارشيف الفواتير',
+
+    //     'التقارير',
+    //     'تقرير الفواتير',
+    //     'تقرير العملاء',
+
+    //     'المستخدمين',
+    //     'قائمة المستخدمين',
+    //     'صلاحيات المستخدمين',
+
+    //     'الاعدادات',
+    //     'المنتجات',
+    //     'الاقسام',
+
+
+    //     'اضافة فاتورة',
+    //     'حذف الفاتورة',
+    //     'تصدير EXCEL',
+    //     'تغير حالة الدفع',
+    //     'تعديل الفاتورة',
+    //     'ارشفة الفاتورة',
+    //     'طباعةالفاتورة',
+    //     'اضافة مرفق',
+    //     'حذف المرفق',
+
+    //     'اضافة مستخدم',
+    //     'تعديل مستخدم',
+    //     'حذف مستخدم',
+
+    //     'عرض صلاحية',
+    //     'اضافة صلاحية',
+    //     'تعديل صلاحية',
+    //     'حذف صلاحية',
+
+    //     'اضافة منتج',
+    //     'تعديل منتج',
+    //     'حذف منتج',
+
+    //     'اضافة قسم',
+    //     'تعديل قسم',
+    //     'حذف قسم',
+    //     'الاشعارات',
+    // ];
+
     function __construct()
     {
-         $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:role-create', ['only' => ['create','store']]);
-         $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+
+    $this->middleware('permission:عرض صلاحية', ['only' => ['index']]);
+    $this->middleware('permission:اضافة صلاحية', ['only' => ['create','store']]);
+    $this->middleware('permission:تعديل صلاحية', ['only' => ['edit','update']]);
+    $this->middleware('permission:حذف صلاحية', ['only' => ['destroy']]);
+
     }
 
     /**

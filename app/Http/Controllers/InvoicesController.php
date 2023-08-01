@@ -125,7 +125,7 @@ class InvoicesController extends Controller
 
         $user = User::get();
         $user = Auth::user();
-       
+
         $invoices = invoices::latest()->first();
         Notification::send($user, new \App\Notifications\AddNotifications($invoices));
 
