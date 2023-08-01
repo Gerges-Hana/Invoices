@@ -36,7 +36,6 @@
                     type: "success"
                 })
             }
-
         </script>
     @endif
 
@@ -48,7 +47,6 @@
                     type: "success"
                 })
             }
-
         </script>
     @endif
 
@@ -60,7 +58,6 @@
                     type: "warning"
                 })
             }
-
         </script>
     @endif
 
@@ -96,11 +93,11 @@
                             </thead>
                             <tbody>
                                 @php
-                                $i = 0;
+                                    $i = 0;
                                 @endphp
                                 @foreach ($invoices as $invoice)
                                     @php
-                                    $i++
+                                        $i++;
                                     @endphp
                                     <tr>
                                         <td>{{ $i }}</td>
@@ -133,18 +130,29 @@
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                                 <div class="dropdown-menu tx-13">
-                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                        data-toggle="modal" data-target="#Transfer_invoice"><i
-                                                            class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
-                                                        الفواتير</a>
-                                                    <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
-                                                        data-toggle="modal" data-target="#delete_invoice"><i
-                                                            class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                        الفاتورة</a>
+
+                                                    @can('نقل الي الفواتير')
+                                                        <a class="dropdown-item" href="#"
+                                                            data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
+                                                            data-target="#Transfer_invoice"><i
+                                                                class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي
+                                                            الفواتير</a>
+                                                    @endcan
+                                                    @can('حذف الفاتورة')
+                                                        <a class="dropdown-item" href="#"
+                                                            data-invoice_id="{{ $invoice->id }}" data-toggle="modal"
+                                                            data-target="#delete_invoice"><i
+                                                                class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
+                                                            الفاتورة</a>
+                                                    @endcan
+
+                                                    @can('طباعةالفاتورة')
                                                         <a class="dropdown-item" href="/invoices/print/{{ $invoice->id }}"><i
-                                                            class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
-                                                        الفاتورة
-                                                    </a>
+                                                                class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                                            الفاتورة
+                                                        </a>
+                                                    @endcan
+
                                                 </div>
                                             </div>
 
@@ -255,7 +263,6 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
-
     </script>
 
     <script>
@@ -265,7 +272,6 @@
             var modal = $(this)
             modal.find('.modal-body #invoice_id').val(invoice_id);
         })
-
     </script>
 
 @endsection
