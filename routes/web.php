@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\InvoiceAttachmentsController;
+use App\Http\Controllers\invoices_report;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\ProductsController;
@@ -55,7 +56,8 @@ Route::post('/attachment/{id}',[ InvoicesDetailsController::class,'destroy'])->n
 Route::get('download/{invoice_number}/{file_name}', [ InvoicesDetailsController::class,'get_file']);
 Route::get('View_file/{invoice_number}/{file_name}' ,[ InvoicesDetailsController::class,'open_file']);
 Route::post('InvoiceAttachments',[InvoiceAttachmentsController::class,'store']);
-
+Route::get('/invoices_report',[invoices_report::class,'index']);
+Route::post('/Search_invoices',[invoices_report::class,'Search_invoices']);
 
 
 
