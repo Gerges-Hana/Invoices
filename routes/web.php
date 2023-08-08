@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\Customers_Report;
 use App\Http\Controllers\InvoiceAttachmentsController;
 use App\Http\Controllers\invoices_report;
 use App\Http\Controllers\InvoicesController;
@@ -58,6 +59,8 @@ Route::get('View_file/{invoice_number}/{file_name}' ,[ InvoicesDetailsController
 Route::post('InvoiceAttachments',[InvoiceAttachmentsController::class,'store']);
 Route::get('/invoices_report',[invoices_report::class,'index']);
 Route::post('/Search_invoices',[invoices_report::class,'Search_invoices']);
+Route::get('/customer_report',[Customers_Report::class,'index']);
+Route::post('/Search_customer_reportes',[Customers_Report::class,'Search_invoices']);
 
 
 

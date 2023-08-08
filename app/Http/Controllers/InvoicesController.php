@@ -127,13 +127,12 @@ class InvoicesController extends Controller
         $user = Auth::user();
 
         $invoices = invoices::latest()->first();
-        Notification::send($user, new \App\Notifications\AddNotifications($invoices));
+        // Notification::send($user, new \App\Notifications\AddNotifications($invoices));
 
         // $invoice->notify(new AddNotifications($messages));
 
-
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
-        return back();
+        return redirect('/invoices');
     }
 
     /**
