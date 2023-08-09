@@ -9,6 +9,7 @@ use App\Models\invoices_details;
 use App\Models\invoice_attachments;
 use App\Models\sections;
 use App\Notifications\AddNotifications;
+use App\Notifications\Add_invoices_new;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,6 +124,7 @@ class InvoicesController extends Controller
         }
 
 
+        // لو انا عاوز ابعت اشعار لكل المستخدمين عي السستم
         $user = User::get();
         $user = Auth::user();
 
@@ -131,10 +133,26 @@ class InvoicesController extends Controller
 
         // $invoice->notify(new AddNotifications($messages));
 
+        // $user = User::find(Auth::user()->id);دا لو انا عاوز ابعت اشعار للمستخدم الموجود في عمليه الدخول حاليا
+
+
+
+
+
+        Notification::send($user, new Add_invoices_new($invoices));
+
+
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return redirect('/invoices');
     }
 
+  public function markAsRead(){
+
+        auth()->user()->unreadNotifications->markAsRead();
+
+        return redirect()->back();
+
+    }
     /**
      * Display the specified resource.
      *

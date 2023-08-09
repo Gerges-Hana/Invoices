@@ -26,7 +26,16 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// notifications
+Route::get('/markAsRead',[InvoicesController::class,'markAsRead'])->name('mark');
 
+// Route::get('/markAsRead', function(){
+
+// 	auth()->user()->unreadNotifications->markAsRead();
+
+// 	return redirect()->back();
+
+// })->name('mark');
 
 
 
@@ -72,3 +81,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route:: get ('/{page}',[AdminController::class,'index']);
+// Route::get('/send', [InvoicesController::class,'store'])->name('home.send');
+
+
+
