@@ -212,11 +212,12 @@
                                     الاشعارات</a>
                             </div>
                             <span class="text-white font-weight-semibold tx-15"> الاشعارات الغير مقروئه:</span>
-                            <span
-                                class="text-white font-weight-semibold tx-15">{{ auth()->user()->unreadNotifications->count() }}</span>
+                            <span id="notifications_count" class="text-white font-weight-semibold tx-15">
+                                {{ auth()->user()->unreadNotifications->count() }}
+                            </span>
                                 {{-- <samp class="text-white font-weight-semibold tx-15">{{ auth()->user()->unreadNotifications->markAsRead() }}</span> --}}
                         </div>
-                        <div class="main-notification-list Notification-scroll">
+                        <div id="unreadNotifications" class="main-notification-list Notification-scroll">
                             @foreach (auth()->user()->unreadNotifications as $notification)
                                 <a class="d-flex p-3 border-bottom" href="{{ url('InvoicesDetails') }}/{{ $notification->data['id']}}">
                                     <div class="notifyimg bg-pink">

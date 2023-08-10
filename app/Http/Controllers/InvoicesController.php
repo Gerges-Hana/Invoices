@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateinvoicesRequest;
 use App\Models\invoices_details;
 use App\Models\invoice_attachments;
 use App\Models\sections;
+use App\Models\User as ModelsUser;
 use App\Notifications\AddNotifications;
 use App\Notifications\Add_invoices_new;
 use Illuminate\Foundation\Auth\User;
@@ -53,22 +54,7 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //         "_token": "esTWTUtmSttzuxG7RdH1O1U9cZSrPWPhH471VNNF",
-        // "invoice_number": "9876",
-        // "invoice_Date": "2023-07-24",
-        // "Due_date": "2023-07-10",
-        // "Section": "1",
-        // "product": "قرض تجاري",
-        // "Amount_collection": "10000",
-        // "Amount_Commission": "9000",
-        // "Discount": "1000",
-        // "Rate_VAT": "5%",
-        // "Value_VAT": "400.00",
-        // "Total": "8400.00",
-        // "note": "حهتحههتمت",
-        // "pic": {}
-        // ===================
+
         $invoic = invoices::create([
 
             'invoice_number' => $request->invoice_number,
@@ -125,21 +111,23 @@ class InvoicesController extends Controller
 
 
         // لو انا عاوز ابعت اشعار لكل المستخدمين عي السستم
-        $user = User::get();
-        $user = Auth::user();
+        // $user = User::get();
+        // $user = Auth::user();
 
-        $invoices = invoices::latest()->first();
+        // $invoices = invoices::latest()->first();
         // Notification::send($user, new \App\Notifications\AddNotifications($invoices));
 
         // $invoice->notify(new AddNotifications($messages));
 
         // $user = User::find(Auth::user()->id);دا لو انا عاوز ابعت اشعار للمستخدم الموجود في عمليه الدخول حاليا
+        // Notification::send($user, new \App\Notifications\Add_invoices_new($invoices));
 
-
-
-
-
+        $user = ModelsUser::get();
+        $invoices = invoices::latest()->first();
         Notification::send($user, new Add_invoices_new($invoices));
+
+
+
 
 
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
