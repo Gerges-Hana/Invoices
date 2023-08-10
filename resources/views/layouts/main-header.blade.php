@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="main-header-right">
-            <ul class="nav">
+            {{-- <ul class="nav">
                 <li class="">
                     <div class="dropdown  nav-itemd-none d-md-flex">
                         <a href="#" class="d-flex  nav-item nav-link pl-0 country-flag1" data-toggle="dropdown"
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> --}}
             <div class="nav nav-item  navbar-nav-right ml-auto">
                 <div class="nav-link" id="bs-example-navbar-collapse-1">
                     <form class="navbar-form" role="search">
@@ -275,7 +275,7 @@
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user"><img alt=""
-                                        src="{{ URL::asset('assets/img/cv.jpeg') }}" class=""></div>
+                                        src="{{ URL::asset('assets/img/cv.country-Flag') }}" class=""></div>
                                 <div class="mr-3 my-auto">
                                     <h6>{{ Auth()->user()->name }}</h6><span>{{ Auth()->user()->email }}</span>
                                 </div>

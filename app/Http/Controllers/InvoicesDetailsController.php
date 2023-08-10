@@ -68,7 +68,7 @@ class InvoicesDetailsController extends Controller
         $details=invoices_details::where('invoice_id',$id)->get();
         $attachments=invoice_attachments::where('invoice_id',$id)->get();
         $currentDate = Carbon::now()->toDateString();
-        return $currentDate;
+
         // return [$id,$details,$invoices];
         return view('invoices.invoices_details',compact('invoices','details','attachments'));
     }

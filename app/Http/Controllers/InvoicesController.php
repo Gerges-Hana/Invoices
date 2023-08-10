@@ -160,6 +160,7 @@ class InvoicesController extends Controller
         $invoices = invoices::findOrFail($id);
 
 
+        // return [$id,$request ,$invoices];
         if ($request->Status === 'مدفوعة') {
 
             $invoices->update([
@@ -169,7 +170,7 @@ class InvoicesController extends Controller
             ]);
 
             invoices_Details::create([
-                'id_Invoice' => $request->invoice_id,
+                'invoice_id' => $id,
                 'invoice_number' => $request->invoice_number,
                 'product' => $request->product,
                 'Section' => $request->Section,
@@ -186,7 +187,7 @@ class InvoicesController extends Controller
                 'Payment_Date' => $request->Payment_Date,
             ]);
             invoices_Details::create([
-                'id_Invoice' => $request->invoice_id,
+                'invoice_id' => $id,
                 'invoice_number' => $request->invoice_number,
                 'product' => $request->product,
                 'Section' => $request->Section,

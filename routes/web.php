@@ -26,43 +26,31 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 // notifications
 Route::get('/markAsRead',[InvoicesController::class,'markAsRead'])->name('mark');
-
-// Route::get('/markAsRead', function(){
-
-// 	auth()->user()->unreadNotifications->markAsRead();
-
-// 	return redirect()->back();
-
-// })->name('mark');
-
-
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-// Route::get('/{page}', 'AdminController@index');
 
-Auth::routes();
-Route::post('/Status/{id}',[ InvoicesController::class,'Status_Update'])->name('Status_Update');
+Route::resource('invoices',InvoicesController::class);
+Route::resource('sections',SectionsController::class);
+Route::resource('products',ProductsController::class);
+Route::resource('archive',ArchiveController::class);
 
 Route::get('/invoices/paid',[ InvoicesController::class,'paid'])->name('paid');
 Route::get('/invoices/print/{id}',[ InvoicesController::class,'print'])->name('print');
 Route::get('/invoices/unpaid',[ InvoicesController::class,'unpaid'])->name('unpaid');
 Route::get('/invoices/partial',[ InvoicesController::class,'partial'])->name('partial');
+Route::post('/Status/{id}',[ InvoicesController::class,'Status_Update'])->name('Status_Update');
 
 
-Route::resource('invoices',InvoicesController::class);
-Route::resource('archive',ArchiveController::class);
-Route::resource('sections',SectionsController::class);
-Route::resource('products',ProductsController::class);
-// Route::resource('archive',ProductsController::class);
+Route::post('/attachment/{id}',[ InvoicesDetailsController::class,'destroy'])->name('delete_file');
 Route::get('/section/{id}',[ InvoicesController::class,'getproducts']);
 Route::get('/edit_invoice/{id}',[ InvoicesController::class,'edit']);
 Route::get('/InvoicesDetails/{id}',[ InvoicesDetailsController::class,'show']);
-Route::post('/attachment/{id}',[ InvoicesDetailsController::class,'destroy'])->name('delete_file');
 Route::get('download/{invoice_number}/{file_name}', [ InvoicesDetailsController::class,'get_file']);
 Route::get('View_file/{invoice_number}/{file_name}' ,[ InvoicesDetailsController::class,'open_file']);
 Route::post('InvoiceAttachments',[InvoiceAttachmentsController::class,'store']);
@@ -71,17 +59,15 @@ Route::post('/Search_invoices',[invoices_report::class,'Search_invoices']);
 Route::get('/customer_report',[Customers_Report::class,'index']);
 Route::post('/Search_customer_reportes',[Customers_Report::class,'Search_invoices']);
 
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    // Route::resource('products', ProductController::class);
 });
 
 Route:: get ('/{page}',[AdminController::class,'index']);
-// Route::get('/send', [InvoicesController::class,'store'])->name('home.send');
 
 
 

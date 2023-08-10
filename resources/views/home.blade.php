@@ -36,11 +36,11 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">
 						<div>
-						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Hi, welcome back!</h2>
-						  <p class="mg-b-0">Sales monitoring dashboard template.</p>
+						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">مرحبا {{Auth::user()->name}} يوما سعيدا...!</h2>
+						  <p class="mg-b-0">لوحة تحكم لحركه الفواتير</p>
 						</div>
 					</div>
-					<div class="main-dashboard-header-right">
+					{{-- <div class="main-dashboard-header-right">
 						<div>
 							<label class="tx-13">Customer Ratings</label>
 							<div class="main-star">
@@ -55,7 +55,7 @@
 							<label class="tx-13">Offline Sales</label>
 							<h5>783,675</h5>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 				<!-- /breadcrumb -->
 @endsection
@@ -168,10 +168,10 @@
 						<div class="card">
 							<div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mb-0">Order status</h4>
+									<h4 class="card-title mb-0">مراجعه الفواتير</h4>
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
 								</div>
-								<p class="tx-12 text-muted mb-0">Order Status and Tracking. Track your order from ship date to arrival. To begin, enter your order number.</p>
+								<p class="tx-12 text-muted mb-0">رسم توضيحي لحركه الفواتير الغير مدفوعه والمدفوعه جزئيا والمدفوعه</p>
 							</div>
 
 
@@ -193,8 +193,8 @@
 
 					<div class="col-lg-12 col-xl-5">
 						<div class="card card-dashboard-map-one">
-							<label class="main-content-label">Sales Revenue by Customers in USA</label>
-							<span class="d-block mg-b-20 text-muted tx-12">Sales Performance of all states in the United States</span>
+							<label class="main-content-label">تحليل حركه الفواتير</label>
+							<span class="d-block mg-b-20 text-muted tx-12">توضيح النسب من حركة الفواتير </span>
 							<div class="">
 								{{-- <div class="vmap-wrapper ht-180" id="vmap2"></div> --}}
 

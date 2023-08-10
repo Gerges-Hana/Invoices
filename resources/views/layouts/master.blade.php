@@ -10,6 +10,13 @@
 		@include('layouts.head')
 	</head>
 
+            <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&family=Readex+Pro:wght@500&display=swap');
+  body{
+    font-family: 'Readex Pro', sans-serif;
+  }
+</style>
+    </style>
 	<body class="main-body app sidebar-mini">
 		<!-- Loader -->
 		<div id="global-loader">

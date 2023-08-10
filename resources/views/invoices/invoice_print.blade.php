@@ -52,16 +52,16 @@
                             <div class="col-md-12 m-auto">
                                 <h2 class="tx-gray-600">معلومات الفاتورة</h2>
                                 <p class="invoice-info-row"><span>رقم الفاتورة</span>
-                                    <span>{{ $invoices->invoice_number }}</span>
+                                    <span>{{ $invoices?->invoice_number }}</span>
                                 </p>
                                 <p class="invoice-info-row"><span>تاريخ الاصدار</span>
-                                    <span>{{ $invoices->invoice_Date }}</span>
+                                    <span>{{ $invoices?->invoice_Date }}</span>
                                 </p>
                                 <p class="invoice-info-row"><span>تاريخ الاستحقاق</span>
-                                    <span>{{ $invoices->Due_date }}</span>
+                                    <span>{{ $invoices?->Due_date }}</span>
                                 </p>
                                 <p class="invoice-info-row"><span>القسم</span>
-                                    <span>{{ $invoices->section->section_name }}</span>
+                                    <span>{{ $invoices?->section?->section_name }}</span>
                                 </p>
                                 <p class="invoice-info-row"><span></span>
                                 </p>
@@ -81,11 +81,11 @@
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td class="tx-12">{{ $invoices->product }}</td>
-                                        <td class="tx-center">{{ number_format($invoices->Amount_collection, 2) }}</td>
-                                        <td class="tx-right">{{ number_format($invoices->Amount_Commission, 2) }}</td>
+                                        <td class="tx-12">{{ $invoices?->product }}</td>
+                                        <td class="tx-center">{{ number_format($invoices?->Amount_collection, 2) }}</td>
+                                        <td class="tx-right">{{ number_format($invoices?->Amount_Commission, 2) }}</td>
                                         @php
-                                            $total = $invoices->Amount_collection + $invoices->Amount_Commission;
+                                            $total = $invoices?->Amount_collection + $invoices?->Amount_Commission;
                                         @endphp
                                         <td class="tx-right">
                                             {{ number_format($total, 2) }}
@@ -135,17 +135,17 @@
                                 </tr>
                                 <tr>
                                     <td class="tx-right">نسبة الضريبة </td>
-                                    <td class="tx-right text-center" colspan="">{{$invoices->Rate_VAT }}</td>
+                                    <td class="tx-right text-center" colspan="">{{$invoices?->Rate_VAT }}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="tx-right">قيمة الخصم</td>
-                                    <td class="tx-right text-center" colspan=""> {{ number_format($invoices->Discount, 2) }}
+                                    <td class="tx-right text-center" colspan=""> {{ number_format($invoices?->Discount, 2) }}
                                 </tr>
                                 <tr>
                                     <td class="tx-right tx-uppercase tx-bold tx-inverse">الاجمالي شامل الضريبة</td>
                                     <td class="tx-right text-center" colspan="">
-                                        <h4 class="tx-primary tx-bold">{{ number_format($invoices->Total, 2) }}</h4>
+                                        <h4 class="tx-primary tx-bold">{{ number_format($invoices?->Total, 2) }}</h4>
                                     </td>
                                 </tr>
 
