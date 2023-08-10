@@ -8,6 +8,7 @@ use App\Http\Requests\Updateinvoices_detailsRequest;
 use App\Models\invoice_attachments;
 use App\Models\invoices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class InvoicesDetailsController extends Controller
@@ -49,7 +50,7 @@ class InvoicesDetailsController extends Controller
      * @param  \App\Models\invoices_details  $invoices_details
      * @return \Illuminate\Http\Response
      */
-    public function show(invoices_details $invoices_details)
+    public function edit()
     {
         //
     }
@@ -60,12 +61,14 @@ class InvoicesDetailsController extends Controller
      * @param  \App\Models\invoices_details  $invoices_details
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show($id)
     {
-        //
+
         $invoices=invoices::where('id',$id)->first();
         $details=invoices_details::where('invoice_id',$id)->get();
         $attachments=invoice_attachments::where('invoice_id',$id)->get();
+        $currentDate = Carbon::now()->toDateString();
+        return $currentDate;
         // return [$id,$details,$invoices];
         return view('invoices.invoices_details',compact('invoices','details','attachments'));
     }

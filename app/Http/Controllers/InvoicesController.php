@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 
+
 class InvoicesController extends Controller
 {
     /**
@@ -127,9 +128,6 @@ class InvoicesController extends Controller
         Notification::send($user, new Add_invoices_new($invoices));
 
 
-
-
-
         session()->flash('Add', 'تم اضافة الفاتورة بنجاح');
         return redirect('/invoices');
     }
@@ -141,6 +139,9 @@ class InvoicesController extends Controller
         return redirect()->back();
 
     }
+
+
+
     /**
      * Display the specified resource.
      *

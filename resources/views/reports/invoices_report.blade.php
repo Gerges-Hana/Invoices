@@ -132,7 +132,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     @if (isset($details))
-                        <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
+                        <table id="example" class="" style=" text-align: center">
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
