@@ -85,11 +85,11 @@
                         <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i
                                 class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
                     @endcan
-
+{{-- 
                     @can('تصدير EXCEL')
                         <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}"
                             style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
-                    @endcan
+                    @endcan --}}
 
                 </div>
                 <div class="card-body">
@@ -107,10 +107,10 @@
                                     <th class="border-bottom-0">الخصم</th>
                                     <th class="border-bottom-0">نسبة الضريبة</th>
                                     <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
                                     <th class="border-bottom-0">الحالة</th>
                                     <th class="border-bottom-0">ملاحظات</th>
                                     <th class="border-bottom-0">العمليات</th>
+                                    <th class="border-bottom-0"> اجمالي جميع الفواتير </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,7 +134,6 @@
                                         <td>{{ $invoice->Discount }}</td>
                                         <td>{{ $invoice->Rate_VAT }}</td>
                                         <td>{{ $invoice->Value_VAT }}</td>
-                                        <td>{{ $invoice->Total }}</td>
                                         <td>
                                             @if ($invoice->Value_Status == 1)
                                                 <span class="text-success">{{ $invoice->Status }}</span>
@@ -206,6 +205,8 @@
                                             </div>
 
                                         </td>
+                                        <td>{{ $invoice->Total }}</td>
+
                                     </tr>
                                 @endforeach
 
