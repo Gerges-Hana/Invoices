@@ -122,7 +122,7 @@
                     </div><br>
 
                     <div class="row">
-                        <div class="col-sm-1 col-md-1">
+                        <div class="col-sm-2 col-md-2">
                             <button class="btn btn-primary btn-block">بحث</button>
                         </div>
                     </div>
