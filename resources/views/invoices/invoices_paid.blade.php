@@ -72,24 +72,25 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table key-buttons text-md-nowrap" data-page-length='50'>
-                            <thead>
-                                <tr>
-                                    <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">رقم الفاتورة</th>
-                                    <th class="border-bottom-0">تاريخ القاتورة</th>
-                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                    <th class="border-bottom-0">المنتج</th>
-                                    <th class="border-bottom-0">القسم</th>
-                                    <th class="border-bottom-0">الخصم</th>
-                                    <th class="border-bottom-0">نسبة الضريبة</th>
-                                    <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
-                                    <th class="border-bottom-0">الحالة</th>
-                                    <th class="border-bottom-0">ملاحظات</th>
-                                    <th class="border-bottom-0">العمليات</th>
-                                </tr>
-                            </thead>
+                        <table id="example" class="table key-buttons text-md-nowrap"
+                        data-page-length='50'style="text-align: center">
+                        <thead>
+                            <tr>
+                                <th class="border-bottom-0">#</th>
+                                <th class="border-bottom-0">رقم الفاتورة</th>
+                                <th class="border-bottom-0">تاريخ القاتورة</th>
+                                <th class="border-bottom-0">تاريخ الاستحقاق</th>
+                                <th class="border-bottom-0">المنتج</th>
+                                <th class="border-bottom-0">القسم</th>
+                                <th class="border-bottom-0">الخصم</th>
+                                <th class="border-bottom-0">نسبة الضريبة</th>
+                                <th class="border-bottom-0">قيمة الضريبة</th>
+                                <th class="border-bottom-0">الحالة</th>
+                                <th class="border-bottom-0">ملاحظات</th>
+                                <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0"> اجمالي جميع الفواتير </th>
+                            </tr>
+                        </thead>
                             <tbody>
                                 @php
                                     $i = 0;
@@ -99,19 +100,18 @@
                                         $i++;
                                     @endphp
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $invoice->invoice_number }} </td>
-                                        <td>{{ $invoice->invoice_Date }}</td>
-                                        <td>{{ $invoice->Due_date }}</td>
-                                        <td>{{ $invoice->product }}</td>
-                                        <td><a
+                                        <td class="text-center">{{ $i }}</td>
+                                        <td class="text-center">{{ $invoice->invoice_number }} </td>
+                                        <td class="text-center">{{ $invoice->invoice_Date }}</td>
+                                        <td class="text-center">{{ $invoice->Due_date }}</td>
+                                        <td class="text-center">{{ $invoice->product }}</td>
+                                        <td class="text-center"><a
                                                 href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
                                         </td>
-                                        <td>{{ $invoice->Discount }}</td>
-                                        <td>{{ $invoice->Rate_VAT }}</td>
-                                        <td>{{ $invoice->Value_VAT }}</td>
-                                        <td>{{ $invoice->Total }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $invoice->Discount }}</td>
+                                        <td class="text-center">{{ $invoice->Rate_VAT }}</td>
+                                        <td class="text-center">{{ $invoice->Value_VAT }}</td>
+                                        <td class="text-center">
                                             @if ($invoice->Value_Status == 1)
                                                 <span class="text-success">{{ $invoice->Status }}</span>
                                             @elseif($invoice->Value_Status == 2)
@@ -122,8 +122,8 @@
 
                                         </td>
 
-                                        <td>{{ $invoice->note }}</td>
-                                        <td>
+                                        <td class="text-center">{{ $invoice->note }}</td>
+                                        <td class="text-center">
 
                                             <div class="dropdown">
                                                 <button aria-expanded="false" aria-haspopup="true"
@@ -180,6 +180,8 @@
                                             </div>
 
                                         </td>
+                                        <td class="text-center">{{ $invoice->Total }}</td>
+
                                     </tr>
                                 @endforeach
 

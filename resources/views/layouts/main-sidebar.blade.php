@@ -20,7 +20,7 @@
             <div class="dropdown user-pro-body">
                 <div class="">
                     <img alt="user-img" class="avatar avatar-xl brround"
-                        src="{{ URL::asset('assets/img/cv.jpeg') }}"><span
+                        src="{{ URL::asset('assets/img/rashedaa.jpg') }}"><span
                         class="avatar-status profile-status bg-green"></span>
                 </div>
                 <div class="user-info">

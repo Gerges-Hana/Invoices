@@ -74,6 +74,7 @@ class ArchiveController extends Controller
      */
     public function update(Request $request)
     {
+        
         $id = $request->invoice_id;
         $deletedInvices = invoices::withTrashed()->where('id', $id)->first();
         $deletedInvices->restore();

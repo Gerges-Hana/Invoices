@@ -38,7 +38,7 @@ Route::get('/invoices/paid',[ InvoicesController::class,'paid'])->name('paid');
 Route::get('/invoices/print/{id}',[ InvoicesController::class,'print'])->name('print');
 Route::get('/invoices/unpaid',[ InvoicesController::class,'unpaid'])->name('unpaid');
 Route::get('/invoices/partial',[ InvoicesController::class,'partial'])->name('partial');
-Route::post('/Status/{id}',[ InvoicesController::class,'Status_Update'])->name('Status_Update');
+Route::post('/Status_Update/{id}',[ InvoicesController::class,'Status_Update'])->name('Status_Update');
 
 Route::resource('invoices',InvoicesController::class);
 Route::resource('sections',SectionsController::class);

@@ -156,9 +156,14 @@
                         <hr class="mg-b-40">
 
 
+<div class="">
 
-                        <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
-                                class="mdi mdi-printer ml-1"></i>طباعة</button>
+    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
+            class="mdi mdi-printer ml-1"></i>طباعة</button>
+
+            <a  href="{{url('invoices')}}" class="btn btn-primary">رجوع</a>
+</div>
+
                     </div>
                 </div>
             </div>

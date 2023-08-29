@@ -157,6 +157,7 @@ class InvoicesController extends Controller
     }
     public function Status_Update($id, Request $request)
     {
+        // return ($request);
         $invoices = invoices::findOrFail($id);
 
 
@@ -321,7 +322,7 @@ class InvoicesController extends Controller
 
             $invoices->delete();
             session()->flash('archive_invoice');
-            return redirect('/Archive');
+            return redirect('/archive');
         }
         // $invoices->delete();
         // session()->flash('delete_invoice');
