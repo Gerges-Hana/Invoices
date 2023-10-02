@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\ChatControler;
 use App\Http\Controllers\Customers_Report;
 use App\Http\Controllers\InvoiceAttachmentsController;
 use App\Http\Controllers\invoices_report;
@@ -68,6 +69,11 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route:: get ('/{page}',[AdminController::class,'index']);
+
+Route:: get ('/chat/invoices',[ChatControler::class,'chat'])->name('chat');
+Route:: get ('/chat/{user_id}',[ChatControler::class,'chatForm']);
+Route:: post ('/chat/{user_id}',[ChatControler::class,'sendMessage'])->middleware('auth');
+
 
 
 
