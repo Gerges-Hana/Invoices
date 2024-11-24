@@ -39,7 +39,7 @@
                                 <br>
                                 <p>اداره :م \ جرجس حنا</p>
                                 <br>
-                               <p>تلفون : 01142585940</p>
+                                <p>تلفون : 01142585940</p>
                                 <br>
                                 <p>الايميل: gergeshana2023@gmail.com</p>
 
@@ -93,7 +93,7 @@
                                     </tr>
 
 
-{{--
+                                    {{--
 
                                     <tr>
                                         <td class="valign-middle" >
@@ -135,12 +135,13 @@
                                 </tr>
                                 <tr>
                                     <td class="tx-right">نسبة الضريبة </td>
-                                    <td class="tx-right text-center" colspan="">{{$invoices?->Rate_VAT }}</td>
+                                    <td class="tx-right text-center" colspan="">{{ $invoices?->Rate_VAT }}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="tx-right">قيمة الخصم</td>
-                                    <td class="tx-right text-center" colspan=""> {{ number_format($invoices?->Discount, 2) }}
+                                    <td class="tx-right text-center" colspan="">
+                                        {{ number_format($invoices?->Discount, 2) }}
                                 </tr>
                                 <tr>
                                     <td class="tx-right tx-uppercase tx-bold tx-inverse">الاجمالي شامل الضريبة</td>
@@ -156,13 +157,13 @@
                         <hr class="mg-b-40">
 
 
-<div class="">
+                        <div class="">
 
-    <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
-            class="mdi mdi-printer ml-1"></i>طباعة</button>
+                            <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" onclick="printDiv()"> <i
+                                    class="mdi mdi-printer ml-1"></i>طباعة</button>
 
-            <a  href="{{url('invoices')}}" class="btn btn-primary">رجوع</a>
-</div>
+                            <a href="{{ url('invoices') }}" class="btn btn-primary">رجوع</a>
+                        </div>
 
                     </div>
                 </div>

@@ -32,19 +32,21 @@ class HomeController extends Controller
 
     $all_sum_unpaid= number_format(invoices::where('Value_Status',2)->sum('Total'), 2);
     $all_count_unpaid= invoices::where('Value_Status',2)->count();
-    $per_unpaid=round($all_count_unpaid /  $all_count *100,2);
+    $per_unpaid=round($all_count_unpaid /   2*100,2);
+    // $per_unpaid=round($all_count_unpaid /  $all_count *100,2);
 
     //    الفواتير  مدفوعه
 
     $all_sum_paid= number_format(invoices::where('Value_Status',1)->sum('Total'), 2);
     $all_count_paid= invoices::where('Value_Status',1)->count();
-    $per_paid=round($all_count_paid /  $all_count *100,2);
+    $per_paid=round($all_count_paid /  2 *100,2);
+    // $per_paid=round($all_count_paid /  $all_count *100,2);
 
     //   جزئيا الفواتير  مدفوعه
 
     $all_sum_partial= number_format(invoices::where('Value_Status',3)->sum('Total'), 2);
     $all_count_partial= invoices::where('Value_Status',3)->count();
-    $per_partial=round($all_count_partial /  $all_count *100,2);
+    $per_partial=round($all_count_partial /  2 *100,2);
 // ==========================================
 // $chartjs = app()->chartjs
 //         ->name('lineChartTest')

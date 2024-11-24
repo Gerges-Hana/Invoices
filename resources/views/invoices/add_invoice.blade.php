@@ -74,8 +74,10 @@
                         <div class="row">
                             <div class="col">
                                 <label for="inputName" class="control-label">القسم</label>
-                                <select name="Section" class="form-control SlectBox" onclick="console.log($(this).val())"
-                                    onchange="console.log('change is firing')">
+                                <select name="Section"
+                                class="form-control SlectBox"
+                                onclick="console.log($(this).val())"
+                                onchange="console.log('change is firing')">
                                     <!--placeholder-->
                                     <option value="" selected disabled>حدد القسم</option>
                                     @foreach ($sections as $section)
@@ -88,6 +90,10 @@
                                 <label for="inputName" class="control-label">المنتج</label>
                                 <select id="product" name="product" class="form-control">
 
+                                    <option value="" selected disabled>حدد المنتج</option>
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->id }}"> {{ $product->Product_name }}</option>
+                                    @endforeach
                                 </select>
 
                             </div>
@@ -234,6 +240,8 @@
                             });
                         },
                     });
+                    .console.log('tmam');
+
 
                 } else {
                     console.log('AJAX load did not work');

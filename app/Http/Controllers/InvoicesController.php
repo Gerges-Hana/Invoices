@@ -7,6 +7,7 @@ use App\Http\Requests\StoreinvoicesRequest;
 use App\Http\Requests\UpdateinvoicesRequest;
 use App\Models\invoices_details;
 use App\Models\invoice_attachments;
+use App\Models\products;
 use App\Models\sections;
 use App\Models\User as ModelsUser;
 use App\Notifications\AddNotifications;
@@ -43,8 +44,10 @@ class InvoicesController extends Controller
     {
         //
         $sections = sections::all();
+        $products = products::all();
+        // dd($products);
 
-        return view('invoices.add_invoice', compact('sections'));
+        return view('invoices.add_invoice', compact('sections','products'));
     }
 
     /**
@@ -61,7 +64,7 @@ class InvoicesController extends Controller
             'invoice_number' => $request->invoice_number,
             'invoice_Date' => $request->invoice_Date,
             'Due_date' => $request->Due_date,
-            'product' => $request->product,
+            'product' => $request?->product,
             'section_id' => $request->Section,
             'Amount_collection' => $request->Amount_collection,
             'Amount_Commission' => $request->Amount_Commission,
@@ -81,7 +84,7 @@ class InvoicesController extends Controller
         invoices_details::create([
             'invoice_id' => $invoice_id,
             'invoice_number' => $request->invoice_number,
-            'product' => $request->product,
+            'product' => $request?->product,
             'Section' => $request->Section,
             'Status' => 'غير مدفوعة',
             'Value_Status' => 2,

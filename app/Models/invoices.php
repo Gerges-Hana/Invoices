@@ -36,4 +36,8 @@ public function section()
 {
     return $this->belongsTo(sections::class);
 }
+public function product()
+{
+    return $this->belongsTo(products::class);
+}
 }
